@@ -1,0 +1,32 @@
+[
+  {
+    "id": "couch-cat",
+    "name": "Cozy Couch Cat",
+    "description": "A calm cat who loves sunbeams, windowsills, and naps on your lap.",
+    "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "trail-dog",
+    "name": "Trail Buddy Dog",
+    "description": "An energetic dog that lives for hikes, fetch, and new smells.",
+    "image": "https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "curious-ferret",
+    "name": "Curious Ferret",
+    "description": "Playful tunneler with a knack for exploring every corner.",
+    "image": "https://images.unsplash.com/photo-1529590003495-b2646e2718bf?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "serene-fish",
+    "name": "Serene Aquarium",
+    "description": "A peaceful aquascape with colorful fish and gentle movement.",
+    "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=80"
+  },
+  {
+    "id": "chatty-bird",
+    "name": "Chatty Companion Bird",
+    "description": "Vibrant and social, loves learning tunes and greeting you.",
+    "image": "https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=900&q=80"
+  }
+]

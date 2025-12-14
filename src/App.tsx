@@ -1,11 +1,14 @@
-import { useState } from 'react';
-import { choices, type Choice } from '../data/options';
+import { useEffect, useMemo, useState } from 'react';
 import Header from './components/Header';
 import DuelCard from './components/DuelCard';
 import RankingsPanel from './components/RankingsPanel';
 import { usePreferences } from './hooks/usePreferences';
+import { useTopic } from './context/TopicContext';
+import type { Choice } from './utils/topics';
+import TopicsPage from './components/TopicsPage';
 
-const randomPair = (items: Choice[]): [Choice, Choice] => {
+const randomPair = (items: Choice[]): [Choice | null, Choice | null] => {
+  if (items.length < 2) return [null, null];
   const first = items[Math.floor(Math.random() * items.length)];
   let second = items[Math.floor(Math.random() * items.length)];
   while (second.id === first.id) {
@@ -15,15 +18,26 @@ const randomPair = (items: Choice[]): [Choice, Choice] => {
 };
 
 const App = () => {
-  const [view, setView] = useState<'arena' | 'rankings'>('arena');
-  const [pair, setPair] = useState<[Choice, Choice]>(() => randomPair(choices));
+  const [view, setView] = useState<'arena' | 'rankings' | 'topics'>('topics');
+  const { choices, topic, loading } = useTopic();
+  const [pair, setPair] = useState<[Choice | null, Choice | null]>([null, null]);
   const [lastChoice, setLastChoice] = useState<'A' | 'B' | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const { ranked, recordResult, reset } = usePreferences(choices);
+  const { ranked, recordResult, reset } = usePreferences(topic.filename, choices);
+
+  useEffect(() => {
+    if (choices.length >= 2) {
+      setPair(randomPair(choices));
+      setView((prev) => (prev === 'topics' ? 'arena' : prev));
+    } else {
+      setPair([null, null]);
+    }
+  }, [choices]);
 
   const handlePick = (slot: 'A' | 'B') => {
     if (isTransitioning) return;
     const [a, b] = pair;
+    if (!a || !b) return;
     const winner = slot === 'A' ? a : b;
     const loser = slot === 'A' ? b : a;
     setLastChoice(slot);
@@ -44,19 +58,21 @@ const App = () => {
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-6">
         <Header active={view} onNavigate={setView} />
 
+        {view === 'topics' && (
+          <div className="grid min-h-[60vh] gap-5">
+            <TopicsPage onSelect={() => setView('arena')} />
+          </div>
+        )}
+
         {view === 'arena' && (
           <div className="grid gap-5">
-            <div className="glass rounded-3xl p-5">
-              <div className="flex items-center justify-between pb-4">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.2em] text-pink-200/80">Choose your vibe</p>
-                  <p className="text-xl font-semibold text-white">Make a call</p>
-                </div>
-                <div className="hidden text-right text-sm text-slate-300 sm:block" />
+            {(!pair[0] || !pair[1]) ? (
+              <div className="rounded-2xl bg-slate-900/50 p-6 text-center text-sm text-slate-300">
+                {loading ? 'Loading...' : 'Need at least two options to start.'}
               </div>
-
+            ) : (
               <div
-                className="grid gap-4 sm:grid-cols-2 transition-all duration-300 ease-out"
+                className="grid items-stretch gap-4 sm:grid-cols-2 transition-all duration-300 ease-out"
                 style={{
                   opacity: isTransitioning ? 0 : 1,
                   transform: isTransitioning ? 'translateY(8px)' : 'translateY(0)',
@@ -79,9 +95,9 @@ const App = () => {
                   disabled={isTransitioning}
                 />
               </div>
+            )}
 
-              <div className="mt-4 text-center text-sm text-slate-300" aria-live="polite" />
-            </div>
+            <div className="mt-4 text-center text-sm text-slate-300" aria-live="polite" />
           </div>
         )}
 

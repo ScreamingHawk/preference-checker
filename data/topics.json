@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Everyday Energy",
+    "description": "Coffee rituals and movement pairings to set the tone.",
+    "filename": "topics/coffee.json"
+  },
+  {
+    "name": "Pets & Companions",
+    "description": "From couch cats to trail dogs—pick your ideal companion vibe.",
+    "filename": "topics/pets.json"
+  }
+]

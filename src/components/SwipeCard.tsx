@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { Choice } from '../../data/options';
+import type { Choice } from '../utils/topics';
 import type { SwipeDirection } from '../hooks/useSwipe';
 
 export type SwipeCardProps = {

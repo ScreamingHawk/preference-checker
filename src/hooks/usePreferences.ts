@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import type { Choice } from '../../data/options';
+import type { Choice } from '../utils/topics';
 import { BASE_RATING, loadRatings, persistRatings, updateRatings, type RatingMap } from '../utils/storage';
 
 export type RankedChoice = {
@@ -9,16 +9,16 @@ export type RankedChoice = {
   losses: number;
 };
 
-export const usePreferences = (choices: Choice[]) => {
+export const usePreferences = (topicKey: string, choices: Choice[]) => {
   const [ratings, setRatings] = useState<RatingMap>({});
 
   useEffect(() => {
-    setRatings(loadRatings());
-  }, []);
+    setRatings(loadRatings(topicKey));
+  }, [topicKey]);
 
   useEffect(() => {
-    persistRatings(ratings);
-  }, [ratings]);
+    persistRatings(topicKey, ratings);
+  }, [topicKey, ratings]);
 
   const ranked = useMemo<RankedChoice[]>(() => {
     return choices

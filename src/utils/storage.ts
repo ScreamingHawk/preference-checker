@@ -1,4 +1,4 @@
-import type { Choice } from '../../data/options';
+import type { Choice } from './topics';
 
 export type RatingEntry = {
   rating: number;
@@ -26,10 +26,10 @@ const ensureEntry = (map: RatingMap, choice: Choice): RatingEntry => {
   );
 };
 
-export const loadRatings = (): RatingMap => {
+export const loadRatings = (topicKey: string): RatingMap => {
   if (typeof localStorage === 'undefined') return {};
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(`${STORAGE_KEY}/${topicKey}`);
     if (!raw) return {};
     return JSON.parse(raw) as RatingMap;
   } catch (error) {
@@ -38,10 +38,10 @@ export const loadRatings = (): RatingMap => {
   }
 };
 
-export const persistRatings = (map: RatingMap) => {
+export const persistRatings = (topicKey: string, map: RatingMap) => {
   if (typeof localStorage === 'undefined') return;
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(map));
+    localStorage.setItem(`${STORAGE_KEY}/${topicKey}`, JSON.stringify(map));
   } catch (error) {
     console.warn('Unable to persist ratings', error);
   }

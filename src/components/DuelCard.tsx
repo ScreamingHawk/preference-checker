@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { Choice } from '../../data/options';
+import type { Choice } from '../utils/topics';
 import Button from './Button';
 
 type Props = {
@@ -31,7 +31,7 @@ const DuelCard: FC<Props> = ({ choice, label, accent, onPick, status = 'idle', d
         <img src={choice.image} alt="" className="h-full w-full object-cover opacity-45" loading="lazy" />
       </div>
       <div className="relative flex h-full flex-col justify-between gap-3">
-        <div className="relative h-44 w-full overflow-hidden rounded-2xl border border-white/5 shadow-inner shadow-black/10">
+        <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/5 shadow-inner shadow-black/10 sm:h-80">
           <img src={choice.image} alt="" className="h-full w-full object-cover" loading="lazy" />
           {status === 'selected' && (
             <div className="absolute inset-0 bg-pink-200/20 blur-[1px] transition-opacity duration-150" />
@@ -40,7 +40,7 @@ const DuelCard: FC<Props> = ({ choice, label, accent, onPick, status = 'idle', d
             <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] transition-opacity duration-150" />
           )}
         </div>
-        <div>
+        <div className="mt-2">
           <h3 className="text-2xl font-semibold text-white">{choice.name}</h3>
           <p className="mt-2 text-sm text-slate-200/80">{choice.description}</p>
         </div>
