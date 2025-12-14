@@ -7,7 +7,7 @@ const TopicsPage: FC<{ onSelect?: () => void }> = ({ onSelect }) => {
   const topics = useTopicsList();
 
   return (
-    <div className="glass rounded-3xl p-5">
+    <div className="rounded-3xl border border-white/5 bg-gradient-to-br from-pink-500/10 via-rose-500/5 to-transparent p-5 shadow-[0_10px_30px_-12px_rgba(236,72,153,0.25)] backdrop-blur">
       <div className="mb-4">
         <p className="text-xl font-semibold text-white">Pick a topic to explore</p>
       </div>

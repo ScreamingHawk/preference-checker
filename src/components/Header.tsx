@@ -8,7 +8,7 @@ type Props = {
 
 const Header: FC<Props> = ({ onNavigate, active }) => {
   return (
-    <header className="flex items-center justify-between gap-3 rounded-2xl px-4 py-3 glass">
+    <header className="flex items-center justify-between gap-3 rounded-2xl border border-white/5 bg-gradient-to-tr from-pink-500/10 via-rose-500/5 to-pink-500/5 px-4 py-3 shadow-[0_10px_30px_-12px_rgba(236,72,153,0.25)] backdrop-blur">
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-pink-300/20 text-lg text-pink-100 ring-2 ring-pink-300/50">
           ♥

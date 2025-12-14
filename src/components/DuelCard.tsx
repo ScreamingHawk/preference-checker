@@ -21,7 +21,7 @@ const DuelCard: FC<Props> = ({ choice, label, accent, onPick, status = 'idle', d
         : '';
   return (
     <div
-      className={`relative overflow-hidden rounded-3xl bg-slate-900/60 p-4 shadow-xl ring-1 ring-white/5 transition duration-200 ease-out ${
+      className={`relative flex h-full flex-col overflow-hidden rounded-3xl bg-slate-900/60 p-4 shadow-xl ring-1 ring-white/5 transition duration-200 ease-out ${
         stateClass || 'hover:-translate-y-[2px] hover:ring-white/10'
       }`}
     >
@@ -31,7 +31,7 @@ const DuelCard: FC<Props> = ({ choice, label, accent, onPick, status = 'idle', d
         <img src={choice.image} alt="" className="h-full w-full object-cover opacity-45" loading="lazy" />
       </div>
       <div className="relative flex h-full flex-col justify-between gap-3">
-        <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-white/5 shadow-inner shadow-black/10 sm:h-80">
+        <div className="relative h-[12rem] w-full overflow-hidden rounded-2xl border border-white/5 shadow-inner shadow-black/10 portrait:h-[14rem] landscape:h-[11.5rem] lg:landscape:h-[13rem]">
           <img src={choice.image} alt="" className="h-full w-full object-cover" loading="lazy" />
           {status === 'selected' && (
             <div className="absolute inset-0 bg-pink-200/20 blur-[1px] transition-opacity duration-150" />
@@ -46,7 +46,7 @@ const DuelCard: FC<Props> = ({ choice, label, accent, onPick, status = 'idle', d
         </div>
         <Button
           onClick={onPick}
-          className={`button-glow mt-2 rounded-xl px-4 py-3 text-sm ${
+          className={`mt-2 rounded-xl px-4 py-3 text-sm shadow-[0_6px_18px_-10px_rgba(236,72,153,0.45)] ${
             accent === 'cyan'
               ? 'bg-pink-200 text-slate-900 shadow-pink-300/30 hover:brightness-110'
             : 'bg-rose-200 text-slate-900 shadow-rose-300/30 hover:brightness-110'

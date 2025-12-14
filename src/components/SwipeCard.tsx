@@ -25,11 +25,11 @@ const SwipeCard: FC<SwipeCardProps> = ({ choice, delta, onSwipe, onPointerDown, 
   return (
     <div className="relative h-[420px] w-full select-none sm:h-[520px]">
       <div
-        className="deck-shadow absolute inset-0"
+        className="pointer-events-none absolute inset-0 rounded-[20px] bg-[radial-gradient(circle_at_40%_20%,rgba(244,114,182,0.1),transparent_50%),radial-gradient(circle_at_80%_0%,rgba(249,168,212,0.1),transparent_50%)]"
         aria-hidden
       />
       <div
-        className="absolute inset-0 rounded-3xl glass card-animate"
+        className="absolute inset-0 rounded-3xl border border-white/5 bg-gradient-to-br from-pink-500/10 via-rose-500/5 to-transparent shadow-[0_10px_30px_-12px_rgba(236,72,153,0.25)] backdrop-blur transition duration-200 ease-out"
         style={{
           transform: `translateX(${translate}px) rotate(${rotation}deg) scale(${1 - Math.min(abs / 3200, 0.05)})`,
           opacity: 0.98,

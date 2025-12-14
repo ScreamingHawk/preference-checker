@@ -12,7 +12,7 @@ const RankingsPanel: FC<Props> = ({ ranked, onReset }) => {
   const maxRating = ranked[0]?.rating ?? BASE_RATING;
 
   return (
-    <div className="glass h-full rounded-3xl p-5 text-slate-50">
+    <div className="h-full rounded-3xl border border-white/5 bg-gradient-to-br from-pink-500/10 via-rose-500/5 to-transparent p-5 text-slate-50 shadow-[0_10px_30px_-12px_rgba(236,72,153,0.25)] backdrop-blur">
       <div className="mb-4 flex items-center justify-between">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-pink-200/80">Rankings</p>

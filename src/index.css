@@ -1,97 +1,10 @@
 @import "tailwindcss";
 
-:root {
-  --bg: #14070f;
-  --surface: rgba(31, 16, 26, 0.85);
-  --card: rgba(56, 21, 37, 0.82);
-  --accent: #f472b6;
-  --accent-2: #f9a8d4;
-  --glow: #ec4899;
-  color-scheme: dark;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(248, 113, 113, 0.5) transparent;
-}
-
-body {
-  background: radial-gradient(circle at 20% 20%, rgba(244, 114, 182, 0.12), transparent 35%),
-    radial-gradient(circle at 80% 0%, rgba(249, 168, 212, 0.14), transparent 40%),
-    var(--bg);
-  min-height: 100vh;
-}
-
-.glass {
-  background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(249, 168, 212, 0.06));
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  box-shadow: 0 10px 30px -12px rgba(236, 72, 153, 0.25);
-  backdrop-filter: blur(8px);
-}
-
-.floating-orb {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  border-radius: 999px;
-  filter: blur(50px);
-  opacity: 0.28;
-  animation: drift 18s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-
-.floating-orb.one {
-  top: -60px;
-  left: -80px;
-  background: radial-gradient(circle, rgba(244, 114, 182, 0.35), transparent 60%);
-}
-
-.floating-orb.two {
-  bottom: -60px;
-  right: -80px;
-  background: radial-gradient(circle, rgba(249, 168, 212, 0.35), transparent 55%);
-  animation-delay: 1.5s;
-}
-
 @keyframes drift {
   from {
     transform: translateY(0px) translateX(0px) scale(1);
   }
   to {
     transform: translateY(-28px) translateX(12px) scale(1.05);
-  }
-}
-
-.deck-shadow::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: radial-gradient(circle at 40% 20%, rgba(244, 114, 182, 0.1), transparent 50%),
-    radial-gradient(circle at 80% 0%, rgba(249, 168, 212, 0.1), transparent 50%);
-  pointer-events: none;
-}
-
-.button-glow {
-  box-shadow: 0 6px 18px -10px rgba(236, 72, 153, 0.45);
-}
-
-.card-animate {
-  transition: transform 0.28s ease, opacity 0.28s ease, filter 0.28s ease;
-}
-
-.stagger-fade {
-  animation: staggerFade 0.45s ease forwards;
-}
-
-@keyframes staggerFade {
-  from {
-    transform: translateY(6px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0px);
-    opacity: 1;
   }
 }
