@@ -1,0 +1,7 @@
+## Preference Checker — Agent Notes
+
+- Package manager: `pnpm` (packageManager set to pnpm@10.15.0). Use `pnpm install` to bootstrap and `pnpm dev|build|preview|lint` for scripts.
+- Lockfile: pnpm-lock.yaml present after install.
+- Stack: Vite + React (with a small Vue custom element), TypeScript, Tailwind CSS v4 alpha. Data lives in `data/` and preferences persist to `localStorage`.
+- Ranking: user picks between two options (A/B); results update an Elo-style rating per option.
+- Deployment: GitHub Pages via `.github/workflows/deploy.yml` (builds on pushes to `main`), Vite `base` set to `./` for Pages.
