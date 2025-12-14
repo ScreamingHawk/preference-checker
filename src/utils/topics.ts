@@ -5,6 +5,7 @@ export type Choice = {
   name: string;
   description: string;
   image: string;
+  type?: string;
 };
 
 export type TopicMeta = {

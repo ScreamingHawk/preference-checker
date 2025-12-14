@@ -8,5 +8,10 @@
     "name": "Pets & Companions",
     "description": "From couch cats to trail dogs—pick your ideal companion vibe.",
     "filename": "topics/pets.json"
+  },
+  {
+    "name": "Miss Universe",
+    "description": "Recent contestants from around the world—pick your crown favorite.",
+    "filename": "topics/miss-universe.json"
   }
 ]

@@ -8,3 +8,4 @@
 - Tests: run `pnpm lint` and `pnpm test` after changes. Vitest config lives in `vitest.config.ts`.
 - Mobile: must support very small phone screens (e.g., 480x854); Arena page should fit without scrolling vertically.
 - Styling: keep CSS only for animations (e.g., keyframes); all other styling should be inline Tailwind utilities.
+- Images (for `data/...`): DuelCard foreground is ~12–14rem tall and card backdrops can stretch up to ~570×900px; source images around 1600px on the long edge (e.g., `w=1600` on Unsplash) to stay crisp on 2x DPR displays.

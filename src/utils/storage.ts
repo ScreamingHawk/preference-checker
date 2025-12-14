@@ -10,6 +10,7 @@ export type RatingEntry = {
 export type RatingMap = Record<string, RatingEntry>;
 
 const STORAGE_KEY = 'preference-checker/ratings';
+export const SELECTED_TOPIC_KEY = 'preference-checker/selected-topic';
 const BASE_RATING = 1200;
 const K_FACTOR = 32;
 
@@ -44,6 +45,25 @@ export const persistRatings = (topicKey: string, map: RatingMap) => {
     localStorage.setItem(`${STORAGE_KEY}/${topicKey}`, JSON.stringify(map));
   } catch (error) {
     console.warn('Unable to persist ratings', error);
+  }
+};
+
+export const loadSelectedTopicKey = (): string | null => {
+  if (typeof localStorage === 'undefined') return null;
+  try {
+    return localStorage.getItem(SELECTED_TOPIC_KEY);
+  } catch (error) {
+    console.warn('Unable to read selected topic', error);
+    return null;
+  }
+};
+
+export const persistSelectedTopicKey = (topicKey: string) => {
+  if (typeof localStorage === 'undefined') return;
+  try {
+    localStorage.setItem(SELECTED_TOPIC_KEY, topicKey);
+  } catch (error) {
+    console.warn('Unable to persist selected topic', error);
   }
 };
 

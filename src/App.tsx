@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import DuelCard from './components/DuelCard';
 import RankingsPanel from './components/RankingsPanel';
 import { usePreferences } from './hooks/usePreferences';
 import { useTopic } from './context/TopicContext';
-import type { Choice } from './utils/topics';
 import TopicsPage from './components/TopicsPage';
+import type { Choice } from './utils/topics';
 
 const randomPair = (items: Choice[]): [Choice | null, Choice | null] => {
   if (items.length < 2) return [null, null];
@@ -23,6 +23,8 @@ const App = () => {
   const [pair, setPair] = useState<[Choice | null, Choice | null]>([null, null]);
   const [lastChoice, setLastChoice] = useState<'A' | 'B' | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [pendingImages, setPendingImages] = useState<string[]>([]);
+  const [loadedImages, setLoadedImages] = useState<string[]>([]);
   const { ranked, recordResult, reset } = usePreferences(topic.filename, choices);
 
   useEffect(() => {
@@ -33,6 +35,32 @@ const App = () => {
       setPair([null, null]);
     }
   }, [choices]);
+
+  useEffect(() => {
+    const ids = pair.map((item) => item?.id).filter(Boolean) as string[];
+    setPendingImages(ids);
+    setLoadedImages([]);
+    if (!ids.length) {
+      setIsTransitioning(false);
+    }
+  }, [pair]);
+
+  useEffect(() => {
+    if (pendingImages.length && loadedImages.length >= pendingImages.length) {
+      setIsTransitioning(false);
+    }
+  }, [loadedImages, pendingImages]);
+
+  useEffect(() => {
+    if (!pendingImages.length) return;
+    const fallback = window.setTimeout(() => setIsTransitioning(false), 1600);
+    return () => clearTimeout(fallback);
+  }, [pendingImages]);
+
+  const handleImageLoad = (id: string) => {
+    if (!pendingImages.includes(id)) return;
+    setLoadedImages((prev) => (prev.includes(id) ? prev : [...prev, id]));
+  };
 
   const handlePick = (slot: 'A' | 'B') => {
     if (isTransitioning) return;
@@ -47,7 +75,6 @@ const App = () => {
       clearTimeout(fadeTimeout);
       setPair(randomPair(choices));
       setLastChoice(null);
-      setIsTransitioning(false);
     }, 360);
   };
 
@@ -84,6 +111,7 @@ const App = () => {
                     label="This one"
                     accent="cyan"
                     onPick={() => handlePick('A')}
+                    onImageLoad={handleImageLoad}
                     status={lastChoice === null ? 'idle' : lastChoice === 'A' ? 'selected' : 'dimmed'}
                     disabled={isTransitioning}
                   />
@@ -94,6 +122,7 @@ const App = () => {
                     label="That one"
                     accent="fuchsia"
                     onPick={() => handlePick('B')}
+                    onImageLoad={handleImageLoad}
                     status={lastChoice === null ? 'idle' : lastChoice === 'B' ? 'selected' : 'dimmed'}
                     disabled={isTransitioning}
                   />

@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vite/client", "node", "vue"]
+    "types": ["vite/client", "node", "vue", "vitest/globals", "@testing-library/jest-dom/vitest"]
   },
   "include": ["src", "data", "vite.config.ts"],
   "references": []

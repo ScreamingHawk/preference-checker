@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { loadTopicChoices, topics, type Choice, type TopicMeta } from '../utils/topics';
+import { loadSelectedTopicKey, persistSelectedTopicKey } from '../utils/storage';
 
 type TopicState = {
   topic: TopicMeta;
@@ -12,8 +13,15 @@ const TopicContext = createContext<TopicState | undefined>(undefined);
 
 const DEFAULT_TOPIC = topics[0];
 
+const resolveInitialTopic = () => {
+  const storedKey = loadSelectedTopicKey();
+  if (!storedKey) return DEFAULT_TOPIC;
+  const storedTopic = topics.find((entry) => entry.filename === storedKey);
+  return storedTopic ?? DEFAULT_TOPIC;
+};
+
 export const TopicProvider = ({ children }: { children: ReactNode }) => {
-  const [topic, setTopic] = useState<TopicMeta>(DEFAULT_TOPIC);
+  const [topic, setTopicState] = useState<TopicMeta>(resolveInitialTopic);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -32,7 +40,15 @@ export const TopicProvider = ({ children }: { children: ReactNode }) => {
     };
   }, [topic]);
 
-  const value = useMemo(() => ({ topic, choices, loading, setTopic }), [topic, choices, loading]);
+  useEffect(() => {
+    persistSelectedTopicKey(topic.filename);
+  }, [topic]);
+
+  const setTopic = useCallback((next: TopicMeta) => {
+    setTopicState(next);
+  }, []);
+
+  const value = useMemo(() => ({ topic, choices, loading, setTopic }), [topic, choices, loading, setTopic]);
 
   return <TopicContext.Provider value={value}>{children}</TopicContext.Provider>;
 };

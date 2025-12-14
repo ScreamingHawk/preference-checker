@@ -7,11 +7,20 @@ type Props = {
   label: string;
   accent: 'cyan' | 'fuchsia';
   onPick: () => void;
+  onImageLoad?: (id: string) => void;
   status?: 'idle' | 'selected' | 'dimmed';
   disabled?: boolean;
 };
 
-const DuelCard: FC<Props> = ({ choice, label, accent, onPick, status = 'idle', disabled = false }) => {
+const DuelCard: FC<Props> = ({
+  choice,
+  label,
+  accent,
+  onPick,
+  onImageLoad,
+  status = 'idle',
+  disabled = false,
+}) => {
   const accentColor = accent === 'cyan' ? 'from-pink-400/25' : 'from-rose-400/25';
   const stateClass =
     status === 'selected'
@@ -30,9 +39,25 @@ const DuelCard: FC<Props> = ({ choice, label, accent, onPick, status = 'idle', d
       <div className="absolute inset-0 overflow-hidden">
         <img src={choice.image} alt="" className="h-full w-full object-cover opacity-45" loading="lazy" />
       </div>
-      <div className="relative flex h-full flex-col justify-between gap-3">
-        <div className="relative h-[12rem] w-full overflow-hidden rounded-2xl border border-white/5 shadow-inner shadow-black/10 portrait:h-[14rem] landscape:h-[11.5rem] lg:landscape:h-[13rem]">
-          <img src={choice.image} alt="" className="h-full w-full object-cover" loading="lazy" />
+      <div className="relative flex h-full flex-col gap-4">
+        <div className="relative flex-1 min-h-[17rem] w-full overflow-hidden rounded-2xl border border-white/5 shadow-inner shadow-black/10 portrait:min-h-[18rem] landscape:min-h-[16rem]">
+          <img
+            src={choice.image}
+            alt=""
+            className="h-full w-full object-cover"
+            loading="lazy"
+            onLoad={() => onImageLoad?.(choice.id)}
+          />
+          {choice.type && (
+            <span className="absolute left-3 top-3 z-10 rounded-full border border-white/10 bg-white/10 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-pink-100 backdrop-blur">
+              {choice.type}
+            </span>
+          )}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/20 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 z-10 p-4 pt-16">
+            <h3 className="text-xl font-semibold text-white drop-shadow-sm">{choice.name}</h3>
+            <p className="mt-1 text-sm text-slate-100/85 drop-shadow-sm">{choice.description}</p>
+          </div>
           {status === 'selected' && (
             <div className="absolute inset-0 bg-pink-200/20 blur-[1px] transition-opacity duration-150" />
           )}
@@ -40,13 +65,9 @@ const DuelCard: FC<Props> = ({ choice, label, accent, onPick, status = 'idle', d
             <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px] transition-opacity duration-150" />
           )}
         </div>
-        <div className="mt-2">
-          <h3 className="text-2xl font-semibold text-white">{choice.name}</h3>
-          <p className="mt-2 text-sm text-slate-200/80">{choice.description}</p>
-        </div>
         <Button
           onClick={onPick}
-          className={`mt-2 rounded-xl px-4 py-3 text-sm shadow-[0_6px_18px_-10px_rgba(236,72,153,0.45)] ${
+          className={`mt-auto rounded-xl px-4 py-3 text-sm shadow-[0_6px_18px_-10px_rgba(236,72,153,0.45)] ${
             accent === 'cyan'
               ? 'bg-pink-200 text-slate-900 shadow-pink-300/30 hover:brightness-110'
             : 'bg-rose-200 text-slate-900 shadow-rose-300/30 hover:brightness-110'

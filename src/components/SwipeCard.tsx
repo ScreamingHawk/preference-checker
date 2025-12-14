@@ -55,7 +55,14 @@ const SwipeCard: FC<SwipeCardProps> = ({ choice, delta, onSwipe, onPointerDown, 
 
         <div className="relative flex h-full flex-col justify-between p-6">
           <div className="space-y-3">
-            <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">{choice.name}</h2>
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">{choice.name}</h2>
+              {choice.type && (
+                <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-pink-100">
+                  {choice.type}
+                </span>
+              )}
+            </div>
             <p className="text-base text-slate-200/80 sm:text-lg">{choice.description}</p>
           </div>
         </div>

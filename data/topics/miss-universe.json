@@ -1,0 +1,74 @@
+[
+  {
+    "id": "nicaragua-palacios",
+    "name": "Nicaragua",
+    "description": "Sheynnis Palacios — Miss Universe 2023",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Sheynnis_Palacios_%282024-02-27%29_03.JPG"
+  },
+  {
+    "id": "thailand-porsild",
+    "name": "Thailand",
+    "description": "Anntonia Porsild — Miss Universe 2023 1st runner-up",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Anntonia_Porsild_Miss_Supranational_Thailand_2019.jpg"
+  },
+  {
+    "id": "colombia-avella",
+    "name": "Colombia",
+    "description": "Camila Avella — Miss Universe 2023 finalist",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Camila_Avella_Bulova_2023.jpg"
+  },
+  {
+    "id": "philippines-dee",
+    "name": "Philippines",
+    "description": "Michelle Dee — Miss Universe Philippines 2023",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Michelle_Dee_courtesy_visit_to_DOT_%28cropped%29.jpg"
+  },
+  {
+    "id": "south-africa-tunzi",
+    "name": "South Africa",
+    "description": "Zozibini Tunzi — Miss Universe 2019",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Zozibini_Tunzi_Attending_Puteri_Indonesia_2020_%28potrait%29.jpg"
+  },
+  {
+    "id": "india-sandhu",
+    "name": "India",
+    "description": "Harnaaz Sandhu — Miss Universe 2021",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Harnaaz_Sandhu_snapped_promoting_Baaghi_4_on_the_sets_of_Bigg_Boss_19_%28cropped%29.jpg"
+  },
+  {
+    "id": "france-mittenaere",
+    "name": "France",
+    "description": "Iris Mittenaere — Miss Universe 2016",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Iris_Mittenaere_2016.05.07_%28cropped1%29.jpg"
+  },
+  {
+    "id": "mexico-meza",
+    "name": "Mexico",
+    "description": "Andrea Meza — Miss Universe 2020",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Andrea_Meza%2C_Miss_Universe_2020_%28cropped%29.jpg"
+  },
+  {
+    "id": "united-states-culpo",
+    "name": "United States",
+    "description": "Olivia Culpo — Miss Universe 2012",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Miss_Universe_Olivia_Culpo.jpg"
+  },
+  {
+    "id": "peru-escribens",
+    "name": "Peru",
+    "description": "Camila Escribens — Miss Peru 2023",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Camila_Escribens_en_la_Marcha_del_Orgullo_LGBT_en_Lima_2023.jpg"
+  },
+  {
+    "id": "el-salvador-garcia-manzo",
+    "name": "El Salvador",
+    "description": "Isabella García-Manzo — Miss Universe El Salvador 2023",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/51/Isabella_Garc%C3%ADa-Manzo_2023.jpg"
+  },
+  {
+    "id": "puerto-rico-miranda",
+    "name": "Puerto Rico",
+    "description": "Sthephanie Miranda — Miss Universe Puerto Rico 2022",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Sthephanie_Miranda.png"
+  }
+]

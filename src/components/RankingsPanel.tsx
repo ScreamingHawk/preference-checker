@@ -36,11 +36,16 @@ const RankingsPanel: FC<Props> = ({ ranked, onReset }) => {
                 </div>
                 <div className="flex flex-1 flex-col justify-between">
                   <div className="flex items-start justify-between gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm font-semibold text-pink-200">#{idx + 1}</span>
-                    <p className="text-lg font-semibold text-white">{entry.choice.name}</p>
-                  </div>
-                  <div className="flex flex-col items-end text-sm font-semibold text-cyan-100">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-sm font-semibold text-pink-200">#{idx + 1}</span>
+                      <p className="text-lg font-semibold text-white">{entry.choice.name}</p>
+                      {entry.choice.type && (
+                        <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-pink-100">
+                          {entry.choice.type}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex flex-col items-end text-sm font-semibold text-cyan-100">
                       <span className="text-lg text-pink-100">{entry.rating} score</span>
                       <span className="text-xs text-slate-400">{entry.wins} wins / {entry.losses} losses</span>
                     </div>

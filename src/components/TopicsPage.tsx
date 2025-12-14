@@ -17,6 +17,7 @@ const TopicsPage: FC<{ onSelect?: () => void }> = ({ onSelect }) => {
           return (
             <div
               key={item.filename}
+              data-topic-card={item.filename}
               className={`rounded-2xl border px-4 py-3 transition ${
                 active ? 'border-pink-300/60 bg-pink-200/10' : 'border-white/5 bg-slate-900/60 hover:border-white/10'
               }`}
