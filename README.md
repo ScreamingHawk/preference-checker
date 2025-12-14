@@ -32,4 +32,4 @@ GitHub Pages is configured via `.github/workflows/deploy.yml` (builds on pushes 
 Options live in `data/options.ts` with name, description, and image. Rankings persist to `localStorage`.
 
 ## License
-MIT © 2024 Michael Standen
+MIT © 2025 Michael Standen
