@@ -1,74 +1,230 @@
 [
   {
-    "id": "nicaragua-palacios",
-    "name": "Nicaragua",
-    "description": "Sheynnis Palacios — Miss Universe 2023",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Sheynnis_Palacios_%282024-02-27%29_03.JPG"
+    "id": "2025-Mexico",
+    "name": "Fátima Bosch",
+    "description": "2025, Mexico",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9c/F%C3%A1tima_Bosch_coronation_on_GrandTV%2C_half_length_02.jpg"
   },
   {
-    "id": "thailand-porsild",
-    "name": "Thailand",
-    "description": "Anntonia Porsild — Miss Universe 2023 1st runner-up",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Anntonia_Porsild_Miss_Supranational_Thailand_2019.jpg"
+    "id": "2025-Thailand",
+    "name": "Praveenar Singh",
+    "description": "2025, Thailand",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/10/Praveenar_Singh_In_Miss_Universe_2025.jpg"
   },
   {
-    "id": "colombia-avella",
-    "name": "Colombia",
-    "description": "Camila Avella — Miss Universe 2023 finalist",
+    "id": "2025-Philippines",
+    "name": "Ahtisa Manalo",
+    "description": "2025, Philippines",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/19/Ahtisa_Manalo_December_2025.jpg"
+  },
+  {
+    "id": "2025-Ivory-Coast",
+    "name": "Olivia Yacé",
+    "description": "2025, Ivory Coast",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/01/Olivia_Yac%C3%A9_13.jpg"
+  },
+  {
+    "id": "2025-China",
+    "name": "Na Zhao",
+    "description": "2025, China",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/Zhao_Na_at_the_Miss_Universe_2025_After_Party.png"
+  },
+  {
+    "id": "2025-Colombia",
+    "name": "Vanessa Pulgarín",
+    "description": "2025, Colombia",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Vanessa_Pulgar%C3%ADn_-_Miss_Universe_2025_TUC.jpg"
+  },
+  {
+    "id": "2025-Puerto-Rico",
+    "name": "Zashely Alicea",
+    "description": "2025, Puerto Rico",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Zashely_Alicea_on_GrandTV.jpg"
+  },
+  {
+    "id": "2025-Bangladesh",
+    "name": "Tangia Methila",
+    "description": "2025, Bangladesh",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/80/Tangia_Zaman_%28cropped%29.jpg"
+  },
+  {
+    "id": "2025-Canada",
+    "name": "Jaime VandenBerg",
+    "description": "2025, Canada",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Jaime_VandenBerg_on_GrandTV%2C_blowing_kiss.jpg"
+  },
+  {
+    "id": "2025-France",
+    "name": "Ève Gilles",
+    "description": "2025, France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Eve_Gilles_-_Miss_Universe_Swimsuit.png"
+  },
+  {
+    "id": "2025-India",
+    "name": "Manika Vishwakarma",
+    "description": "2025, India",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Manika_Vishwakarma_on_GrandTV.jpg"
+  },
+  {
+    "id": "2025-Nicaragua",
+    "name": "Itza Castillo",
+    "description": "2025, Nicaragua",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/de/Itza_Castillo_on_GrandTV.jpg"
+  },
+  {
+    "id": "2025-Palestine",
+    "name": "Nadeen Ayoub",
+    "description": "2025, Palestine",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/60/Nadeen_Ayoub_-_Miss_Universe_2025.jpg"
+  },
+  {
+    "id": "2025-United-States",
+    "name": "Audrey Eckert",
+    "description": "2025, United States",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Audrey_Eckert_on_GrandTV.jpg"
+  },
+  {
+    "id": "2025-Indonesia",
+    "name": "Sanly Liu",
+    "description": "2025, Indonesia",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/61/Sanly_Liu_on_GrandTV.jpg"
+  },
+  {
+    "id": "2024-Denmark",
+    "name": "Victoria Theilvig",
+    "description": "2024, Denmark",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/26/Victoria_Kj%C3%A6r_Theilvig_in_2025.jpg"
+  },
+  {
+    "id": "2024-Mexico",
+    "name": "María Fernanda Beltrán",
+    "description": "2024, Mexico",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/60/Mar%C3%ADa_Fernanda_Beltr%C3%A1n.png"
+  },
+  {
+    "id": "2024-Thailand",
+    "name": "Suchata Chuangsri",
+    "description": "2024, Thailand",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Opal_Suchata_Miss_World_2025.jpg"
+  },
+  {
+    "id": "2024-Canada",
+    "name": "Ashley Callingbull",
+    "description": "2024, Canada",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Ashley_Callingbull_half_length.jpg"
+  },
+  {
+    "id": "2024-Peru",
+    "name": "Tatiana Calmell",
+    "description": "2024, Peru",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Tatiana_Calmell_on_Florida_News.jpg"
+  },
+  {
+    "id": "2024-France",
+    "name": "Indira Ampiot",
+    "description": "2024, France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Indira_Ampiot_-_2022.jpg"
+  },
+  {
+    "id": "2024-Japan",
+    "name": "Kaya Chakrabortty",
+    "description": "2024, Japan",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Kaya_Chakrabortty_in_2025.jpg"
+  },
+  {
+    "id": "2024-Philippines",
+    "name": "Chelsea Manalo",
+    "description": "2024, Philippines",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Chelsea_Manalo_%282025%29.jpg"
+  },
+  {
+    "id": "2024-Serbia",
+    "name": "Ivana Trišić",
+    "description": "2024, Serbia",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Ivana_Trisic_model.jpg"
+  },
+  {
+    "id": "2024-Vietnam",
+    "name": "Nguyễn Cao Kỳ Duyên",
+    "description": "2024, Vietnam",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9a/K%E1%BB%B2_DUY%C3%8AN.jpg"
+  },
+  {
+    "id": "2024-Bonaire",
+    "name": "Ruby Pouchet",
+    "description": "2024, Bonaire",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Ruby_Pouchet.png"
+  },
+  {
+    "id": "2024-United-States",
+    "name": "Alma Cooper",
+    "description": "2024, United States",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Miss_USA%2C_Army_Lt._Cooper_Visits_Fort_Hamilton_%281%29.jpg"
+  },
+  {
+    "id": "2024-Uzbekistan",
+    "name": "Nigina Fakhriddinova",
+    "description": "2024, Uzbekistan",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e8/%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C_%D0%9D%D0%B8%D0%B3%D0%B8%D0%BD%D0%B0_%D0%A4%D0%B0%D1%85%D1%80%D0%B8%D0%B4%D0%B4%D0%B8%D0%BD%D0%BE%D0%B2%D0%B0_%D0%A3%D0%B7%D0%B1%D0%B5%D0%BA%D0%B8%D1%81%D1%82%D0%B0%D0%BD.jpg"
+  },
+  {
+    "id": "2023-Belgium",
+    "name": "Emilie Vansteenkiste",
+    "description": "2023, Belgium",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/79/Emilie_Vansteenkiste_%282024%29.png"
+  },
+  {
+    "id": "2023-Colombia",
+    "name": "Camila Avella",
+    "description": "2023, Colombia",
     "image": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Camila_Avella_Bulova_2023.jpg"
   },
   {
-    "id": "philippines-dee",
-    "name": "Philippines",
-    "description": "Michelle Dee — Miss Universe Philippines 2023",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Michelle_Dee_courtesy_visit_to_DOT_%28cropped%29.jpg"
+    "id": "2023-Costa-Rica",
+    "name": "Lisbeth Valverde",
+    "description": "2023, Costa Rica",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/97/Lisbeth_Valverde_Brenes_%28cropped%29.png"
   },
   {
-    "id": "south-africa-tunzi",
-    "name": "South Africa",
-    "description": "Zozibini Tunzi — Miss Universe 2019",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Zozibini_Tunzi_Attending_Puteri_Indonesia_2020_%28potrait%29.jpg"
-  },
-  {
-    "id": "india-sandhu",
-    "name": "India",
-    "description": "Harnaaz Sandhu — Miss Universe 2021",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Harnaaz_Sandhu_snapped_promoting_Baaghi_4_on_the_sets_of_Bigg_Boss_19_%28cropped%29.jpg"
-  },
-  {
-    "id": "france-mittenaere",
-    "name": "France",
-    "description": "Iris Mittenaere — Miss Universe 2016",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Iris_Mittenaere_2016.05.07_%28cropped1%29.jpg"
-  },
-  {
-    "id": "mexico-meza",
-    "name": "Mexico",
-    "description": "Andrea Meza — Miss Universe 2020",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Andrea_Meza%2C_Miss_Universe_2020_%28cropped%29.jpg"
-  },
-  {
-    "id": "united-states-culpo",
-    "name": "United States",
-    "description": "Olivia Culpo — Miss Universe 2012",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Miss_Universe_Olivia_Culpo.jpg"
-  },
-  {
-    "id": "peru-escribens",
-    "name": "Peru",
-    "description": "Camila Escribens — Miss Peru 2023",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Camila_Escribens_en_la_Marcha_del_Orgullo_LGBT_en_Lima_2023.jpg"
-  },
-  {
-    "id": "el-salvador-garcia-manzo",
-    "name": "El Salvador",
-    "description": "Isabella García-Manzo — Miss Universe El Salvador 2023",
+    "id": "2023-El-Salvador",
+    "name": "Isabella García-Manzo",
+    "description": "2023, El Salvador",
     "image": "https://upload.wikimedia.org/wikipedia/commons/5/51/Isabella_Garc%C3%ADa-Manzo_2023.jpg"
   },
   {
-    "id": "puerto-rico-miranda",
-    "name": "Puerto Rico",
-    "description": "Sthephanie Miranda — Miss Universe Puerto Rico 2022",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Sthephanie_Miranda.png"
+    "id": "2023-France",
+    "name": "Diane Leyre",
+    "description": "2023, France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Diane_Leyre_-_Chinese_Business_Club.png"
+  },
+  {
+    "id": "2023-Netherlands",
+    "name": "Rikkie Kollé",
+    "description": "2023, Netherlands",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/de/Cast_Interviews_Hide_My_Love_Paul_Morris_1-7_screenshot.png"
+  },
+  {
+    "id": "2023-Nicaragua",
+    "name": "Sheynnis Palacios",
+    "description": "2023, Nicaragua",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Sheynnis_Palacios_%282024-02-27%29_03.JPG"
+  },
+  {
+    "id": "2023-Peru",
+    "name": "Camila Escribens",
+    "description": "2023, Peru",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Camila_Escribens_en_la_Marcha_del_Orgullo_LGBT_en_Lima_2023.jpg"
+  },
+  {
+    "id": "2023-Philippines",
+    "name": "Michelle Dee",
+    "description": "2023, Philippines",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Michelle_Dee_courtesy_visit_to_DOT_%28cropped%29.jpg"
+  },
+  {
+    "id": "2023-Thailand",
+    "name": "Anntonia Porsild",
+    "description": "2023, Thailand",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/99/Anntonia_Porsild_Miss_Supranational_Thailand_2019.jpg"
   }
 ]
