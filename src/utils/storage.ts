@@ -15,8 +15,17 @@ export const SELECTED_TOPIC_KEY = 'preference-checker/selected-topic';
 const USER_TOPICS_KEY = 'preference-checker/user-topics';
 const BASE_RATING = 1200;
 const K_FACTOR = 32;
+const PROVISIONAL_MAX_MULTIPLIER = 2.5;
+const PROVISIONAL_GAMES_SCALE = 12;
 
 const expectedScore = (player: number, opponent: number) => 1 / (1 + 10 ** ((opponent - player) / 400));
+
+const kFactorForGamesPlayed = (gamesPlayed: number) => {
+  const safeGamesPlayed = Math.max(0, gamesPlayed);
+  const multiplier =
+    1 + (PROVISIONAL_MAX_MULTIPLIER - 1) * Math.exp(-safeGamesPlayed / PROVISIONAL_GAMES_SCALE);
+  return K_FACTOR * multiplier;
+};
 
 const ensureEntry = (map: RatingMap, choice: Choice): RatingEntry => {
   return (
@@ -132,8 +141,14 @@ export const updateRatings = (map: RatingMap, winner: Choice, loser: Choice): Ra
   const expectedWinner = expectedScore(winnerEntry.rating, loserEntry.rating);
   const expectedLoser = expectedScore(loserEntry.rating, winnerEntry.rating);
 
-  const winnerRating = winnerEntry.rating + K_FACTOR * (1 - expectedWinner);
-  const loserRating = loserEntry.rating + K_FACTOR * (0 - expectedLoser);
+  const winnerGames = winnerEntry.wins + winnerEntry.losses;
+  const loserGames = loserEntry.wins + loserEntry.losses;
+
+  const winnerK = kFactorForGamesPlayed(winnerGames);
+  const loserK = kFactorForGamesPlayed(loserGames);
+
+  const winnerRating = winnerEntry.rating + winnerK * (1 - expectedWinner);
+  const loserRating = loserEntry.rating + loserK * (0 - expectedLoser);
 
   return {
     ...map,

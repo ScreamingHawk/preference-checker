@@ -10,6 +10,16 @@ type Props = {
 
 const RankingsPanel: FC<Props> = ({ ranked, onReset }) => {
   const maxRating = ranked[0]?.rating ?? BASE_RATING;
+  const ratingCounts = ranked.reduce<Record<string, number>>((acc, entry) => {
+    const key = String(entry.rating);
+    acc[key] = (acc[key] ?? 0) + 1;
+    return acc;
+  }, {});
+  const ranks = ranked.reduce<number[]>((acc, entry, idx) => {
+    const rank = idx === 0 ? 1 : entry.rating === ranked[idx - 1]?.rating ? acc[idx - 1] : idx + 1;
+    acc.push(rank);
+    return acc;
+  }, []);
 
   return (
     <div className="h-full rounded-3xl border border-white/5 bg-gradient-to-br from-pink-500/10 via-rose-500/5 to-transparent p-5 text-slate-50 shadow-[0_10px_30px_-12px_rgba(236,72,153,0.25)] backdrop-blur">
@@ -25,6 +35,8 @@ const RankingsPanel: FC<Props> = ({ ranked, onReset }) => {
       <div className="space-y-3 pb-2">
         {ranked.map((entry, idx) => {
           const ratio = maxRating ? entry.rating / maxRating : 0;
+          const rank = ranks[idx] ?? idx + 1;
+          const isTied = (ratingCounts[String(entry.rating)] ?? 0) > 1;
           return (
             <div
               key={entry.choice.id}
@@ -37,7 +49,10 @@ const RankingsPanel: FC<Props> = ({ ranked, onReset }) => {
                 <div className="flex flex-1 flex-col justify-between">
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-sm font-semibold text-pink-200">#{idx + 1}</span>
+                      <span className="text-sm font-semibold text-pink-200">
+                        #{rank}
+                        {isTied ? '=' : ''}
+                      </span>
                       <p className="text-lg font-semibold text-white">{entry.choice.name}</p>
                       {entry.choice.type && (
                         <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-pink-100">

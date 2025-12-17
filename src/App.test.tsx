@@ -92,3 +92,28 @@ test('loads ratings on page load using last selected topic', async () => {
 
   expect(await screen.findByText(/1555 score/i)).toBeInTheDocument();
 });
+
+test('shows tied places when multiple entries share the same score', async () => {
+  localStorage.setItem(SELECTED_TOPIC_KEY, 'topics/pets.json');
+  localStorage.setItem(
+    'preference-checker/ratings/topics/pets.json',
+    JSON.stringify({
+      'couch-cat': { rating: 1600, wins: 5, losses: 2, lastUpdated: Date.now() },
+      'trail-dog': { rating: 1600, wins: 1, losses: 0, lastUpdated: Date.now() },
+    }),
+  );
+
+  render(
+    <TopicProvider>
+      <App />
+    </TopicProvider>,
+  );
+
+  act(() => {
+    screen.getByRole('button', { name: /rankings/i }).click();
+  });
+
+  expect(await screen.findAllByText(/1600 score/i)).toHaveLength(2);
+  expect(screen.getAllByText('#1=')).toHaveLength(2);
+  expect(screen.getAllByText('#3=')).toHaveLength(3);
+});
