@@ -31,6 +31,7 @@ export const TopicProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     let active = true;
     setLoading(true);
+    setChoices([]);
     const maybeUserChoices = loadUserTopicChoices(topic.filename);
     const loader = maybeUserChoices
       ? Promise.resolve(maybeUserChoices)

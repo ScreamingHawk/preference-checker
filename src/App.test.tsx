@@ -1,5 +1,5 @@
 import { render, screen, waitFor, act, within } from '@testing-library/react';
-import { beforeEach } from 'vitest';
+import { beforeEach, vi } from 'vitest';
 import React from 'react';
 import App from './App';
 import { TopicProvider } from './context/TopicContext';
@@ -31,6 +31,46 @@ test('app renders topics and can reach arena without crashing', async () => {
   await waitFor(() => {
     expect(screen.getByRole('button', { name: /this one/i })).toBeInTheDocument();
   });
+});
+
+test('switching topics refreshes the arena pair', async () => {
+  const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0);
+
+  render(
+    <TopicProvider>
+      <App />
+    </TopicProvider>,
+  );
+
+  act(() => {
+    screen.getByRole('button', { name: /topics/i }).click();
+  });
+
+  expect(await screen.findByText(/pick a topic to explore/i)).toBeInTheDocument();
+
+  act(() => {
+    screen.getByRole('button', { name: /selected/i }).click();
+  });
+
+  expect(await screen.findByText('Pour-over Ritual')).toBeInTheDocument();
+  expect(screen.getByText('Single Origin Espresso')).toBeInTheDocument();
+
+  act(() => {
+    screen.getByRole('button', { name: /topics/i }).click();
+  });
+
+  const petsCardTitle = await screen.findByText('Pets & Companions');
+  const petsCard = petsCardTitle.closest('[data-topic-card="topics/pets.json"]');
+  expect(petsCard).not.toBeNull();
+
+  act(() => {
+    within(petsCard as HTMLElement).getByRole('button', { name: /use this/i }).click();
+  });
+
+  expect(await screen.findByText('Chatty Companion Bird')).toBeInTheDocument();
+  expect(screen.getByText('Cozy Couch Cat')).toBeInTheDocument();
+
+  randomSpy.mockRestore();
 });
 
 test('uses last selected topic from localStorage', async () => {
