@@ -70,3 +70,25 @@ test('persists selected topic to localStorage when changed', async () => {
     expect(localStorage.getItem(SELECTED_TOPIC_KEY)).toBe('topics/pets.json');
   });
 });
+
+test('loads ratings on page load using last selected topic', async () => {
+  localStorage.setItem(SELECTED_TOPIC_KEY, 'topics/pets.json');
+  localStorage.setItem(
+    'preference-checker/ratings/topics/pets.json',
+    JSON.stringify({
+      'couch-cat': { rating: 1555, wins: 6, losses: 1, lastUpdated: Date.now() },
+    }),
+  );
+
+  render(
+    <TopicProvider>
+      <App />
+    </TopicProvider>,
+  );
+
+  act(() => {
+    screen.getByRole('button', { name: /rankings/i }).click();
+  });
+
+  expect(await screen.findByText(/1555 score/i)).toBeInTheDocument();
+});

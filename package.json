@@ -11,7 +11,8 @@
     "lint": "tsc --noEmit",
     "test": "vitest run",
     "test:ui": "vitest",
-    "data:check-images": "tsx data/scripts/check-topic-images.ts"
+    "data:check-images": "tsx data/scripts/check-topic-images.ts",
+    "data:update-images": "tsx data/scripts/update-topic-images.ts"
   },
   "dependencies": {
     "react": "^18.3.1",

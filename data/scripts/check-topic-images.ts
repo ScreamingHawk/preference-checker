@@ -1,15 +1,15 @@
 import { access, readFile } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
-type TopicMeta = {
+export type TopicMeta = {
   name: string;
   description?: string;
   filename: string;
 };
 
-type TopicEntry = {
+export type TopicEntry = {
   id: string;
   name: string;
   description?: string;
@@ -18,8 +18,8 @@ type TopicEntry = {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const repoRoot = path.resolve(__dirname, '../..');
-const dataDir = path.join(repoRoot, 'data');
+export const repoRoot = path.resolve(__dirname, '../..');
+export const dataDir = path.join(repoRoot, 'data');
 
 async function main() {
   const topicInput = process.argv[2];
@@ -44,19 +44,22 @@ async function main() {
   const topicPath = path.join(dataDir, topicMeta.filename);
   const topicEntries = await readTopicEntries(topicPath);
 
-  let missingCount = 0;
+  // Run checks concurrently, then print in a stable order.
+  const results = await Promise.all(
+    topicEntries.map(async (entry) => ({
+      entry,
+      result: await checkImage(entry.image),
+    }))
+  );
 
-  for (const entry of topicEntries) {
-    const result = await checkImage(entry.image);
+  const missingCount = results.reduce((count, { entry, result }) => {
     const prefix = result.ok ? '[OK]' : '[MISSING]';
     const detail = result.detail ? ` (${result.detail})` : '';
 
     console.log(`${prefix} ${entry.id} -> ${entry.image}${detail}`);
 
-    if (!result.ok) {
-      missingCount += 1;
-    }
-  }
+    return result.ok ? count : count + 1;
+  }, 0);
 
   console.log(
     `Finished checking ${topicEntries.length} images. Missing: ${missingCount}.`
@@ -67,13 +70,16 @@ async function main() {
   }
 }
 
-async function loadTopicsIndex(): Promise<TopicMeta[]> {
+export async function loadTopicsIndex(): Promise<TopicMeta[]> {
   const topicsPath = path.join(dataDir, 'topics.json');
   const contents = await readFile(topicsPath, 'utf8');
   return JSON.parse(contents) as TopicMeta[];
 }
 
-function findTopic(topics: TopicMeta[], input: string): TopicMeta | undefined {
+export function findTopic(
+  topics: TopicMeta[],
+  input: string
+): TopicMeta | undefined {
   const normalizedInput = input.trim().toLowerCase();
 
   return topics.find((topic) => {
@@ -86,12 +92,14 @@ function findTopic(topics: TopicMeta[], input: string): TopicMeta | undefined {
   });
 }
 
-async function readTopicEntries(topicPath: string): Promise<TopicEntry[]> {
+export async function readTopicEntries(
+  topicPath: string
+): Promise<TopicEntry[]> {
   const contents = await readFile(topicPath, 'utf8');
   return JSON.parse(contents) as TopicEntry[];
 }
 
-async function checkImage(imageLocation: string) {
+export async function checkImage(imageLocation: string) {
   if (/^https?:\/\//i.test(imageLocation)) {
     return checkRemoteImage(imageLocation);
   }
@@ -171,7 +179,13 @@ async function fileExists(targetPath: string) {
   }
 }
 
-main().catch((error) => {
-  console.error('Unexpected error:', error);
-  process.exit(1);
-});
+export function resolveTopicPath(topicFilename: string) {
+  return path.join(dataDir, topicFilename);
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error('Unexpected error:', error);
+    process.exit(1);
+  });
+}

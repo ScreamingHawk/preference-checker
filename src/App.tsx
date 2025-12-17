@@ -2,19 +2,44 @@ import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import DuelCard from './components/DuelCard';
 import RankingsPanel from './components/RankingsPanel';
-import { usePreferences } from './hooks/usePreferences';
+import { usePreferences, type RankedChoice } from './hooks/usePreferences';
 import { useTopic } from './context/TopicContext';
 import TopicsPage from './components/TopicsPage';
+import { BASE_RATING } from './utils/storage';
 import type { Choice } from './utils/topics';
 
-const randomPair = (items: Choice[]): [Choice | null, Choice | null] => {
-  if (items.length < 2) return [null, null];
-  const first = items[Math.floor(Math.random() * items.length)];
-  let second = items[Math.floor(Math.random() * items.length)];
-  while (second.id === first.id) {
-    second = items[Math.floor(Math.random() * items.length)];
+const selectClosePair = (ranked: RankedChoice[], choices: Choice[]): [Choice | null, Choice | null] => {
+  const pool = ranked.length
+    ? ranked
+    : choices.map((choice) => ({ choice, rating: BASE_RATING, wins: 0, losses: 0 }));
+
+  if (pool.length < 2) return [null, null];
+
+  type WeightedPair = { first: number; second: number; weight: number };
+  const weightedPairs: WeightedPair[] = [];
+  let totalWeight = 0;
+
+  for (let i = 0; i < pool.length; i++) {
+    for (let j = i + 1; j < pool.length; j++) {
+      const diff = Math.abs(pool[i].rating - pool[j].rating);
+      const weight = 1 / (1 + diff / 80); // bias toward pairs with closer ratings
+      totalWeight += weight;
+      weightedPairs.push({ first: i, second: j, weight });
+    }
   }
-  return [first, second];
+
+  const pick = Math.random() * totalWeight;
+  let cumulative = 0;
+
+  for (const entry of weightedPairs) {
+    cumulative += entry.weight;
+    if (pick <= cumulative) {
+      return [pool[entry.first].choice, pool[entry.second].choice];
+    }
+  }
+
+  const fallback = weightedPairs[weightedPairs.length - 1];
+  return [pool[fallback.first].choice, pool[fallback.second].choice];
 };
 
 const App = () => {
@@ -25,16 +50,28 @@ const App = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [pendingImages, setPendingImages] = useState<string[]>([]);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
-  const { ranked, recordResult, reset } = usePreferences(topic.filename, choices);
+  const [hasSeededPair, setHasSeededPair] = useState(false);
+  const { ranked, recordResult, reset, ratingsReady } = usePreferences(topic.filename, choices);
 
   useEffect(() => {
-    if (choices.length >= 2) {
-      setPair(randomPair(choices));
-      setView((prev) => (prev === 'topics' ? 'arena' : prev));
-    } else {
+    setPair([null, null]);
+    setHasSeededPair(false);
+  }, [topic.filename]);
+
+  useEffect(() => {
+    if (choices.length < 2) {
       setPair([null, null]);
+      setHasSeededPair(false);
+      return;
     }
-  }, [choices]);
+
+    if (!ratingsReady) return;
+    if (hasSeededPair) return;
+
+    setPair(selectClosePair(ranked, choices));
+    setHasSeededPair(true);
+    setView((prev) => (prev === 'topics' ? 'arena' : prev));
+  }, [choices, hasSeededPair, ranked, ratingsReady]);
 
   useEffect(() => {
     const ids = pair.map((item) => item?.id).filter(Boolean) as string[];
@@ -73,7 +110,7 @@ const App = () => {
     recordResult(winner, loser);
     setTimeout(() => {
       clearTimeout(fadeTimeout);
-      setPair(randomPair(choices));
+      setPair(selectClosePair(ranked, choices));
       setLastChoice(null);
     }, 360);
   };
