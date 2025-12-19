@@ -15,10 +15,12 @@ beforeEach(() => {
 });
 
 type TopicEntry = { id: string; name: string; description?: string; image: string };
+type TopicMeta = { name: string; description: string; filename: string };
 
 const loadTopicEntries = (topicFilename: string): TopicEntry[] => {
   const testDir = path.dirname(fileURLToPath(import.meta.url));
-  const topicPath = path.join(testDir, '..', 'data', 'topics', topicFilename);
+  const normalized = topicFilename.replace(/^topics\//, '');
+  const topicPath = path.join(testDir, '..', 'data', 'topics', normalized);
   return JSON.parse(readFileSync(topicPath, 'utf8')) as TopicEntry[];
 };
 
@@ -28,6 +30,12 @@ const selectExpectedPairNames = (entries: TopicEntry[]) => {
     .slice()
     .sort((a, b) => a.localeCompare(b))
     .slice(0, 2);
+};
+
+const loadTopicsMeta = (): TopicMeta[] => {
+  const testDir = path.dirname(fileURLToPath(import.meta.url));
+  const topicsPath = path.join(testDir, '..', 'data', 'topics.json');
+  return JSON.parse(readFileSync(topicsPath, 'utf8')) as TopicMeta[];
 };
 
 test('app renders topics and can reach arena without crashing', async () => {
@@ -54,8 +62,12 @@ test('app renders topics and can reach arena without crashing', async () => {
 
 test('switching topics refreshes the arena pair', async () => {
   const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0);
-  const coffeePair = selectExpectedPairNames(loadTopicEntries('coffee.json'));
-  const petsPair = selectExpectedPairNames(loadTopicEntries('pets.json'));
+  const topics = loadTopicsMeta();
+  const [firstTopic, secondTopic] = topics;
+  expect(firstTopic).toBeDefined();
+  expect(secondTopic).toBeDefined();
+  const firstPair = selectExpectedPairNames(loadTopicEntries(firstTopic.filename));
+  const secondPair = selectExpectedPairNames(loadTopicEntries(secondTopic.filename));
 
   render(
     <TopicProvider>
@@ -73,23 +85,23 @@ test('switching topics refreshes the arena pair', async () => {
     screen.getByRole('button', { name: /selected/i }).click();
   });
 
-  expect(await screen.findByText(coffeePair[0])).toBeInTheDocument();
-  expect(screen.getByText(coffeePair[1])).toBeInTheDocument();
+  expect(await screen.findByText(firstPair[0])).toBeInTheDocument();
+  expect(screen.getByText(firstPair[1])).toBeInTheDocument();
 
   act(() => {
     screen.getByRole('button', { name: /topics/i }).click();
   });
 
-  const petsCardTitle = await screen.findByText('Pets & Companions');
-  const petsCard = petsCardTitle.closest('[data-topic-card="topics/pets.json"]');
-  expect(petsCard).not.toBeNull();
+  const nextCardTitle = await screen.findByText(secondTopic.name);
+  const nextCard = nextCardTitle.closest(`[data-topic-card="${secondTopic.filename}"]`);
+  expect(nextCard).not.toBeNull();
 
   act(() => {
-    within(petsCard as HTMLElement).getByRole('button', { name: /use this/i }).click();
+    within(nextCard as HTMLElement).getByRole('button', { name: /use this/i }).click();
   });
 
-  expect(await screen.findByText(petsPair[0])).toBeInTheDocument();
-  expect(screen.getByText(petsPair[1])).toBeInTheDocument();
+  expect(await screen.findByText(secondPair[0])).toBeInTheDocument();
+  expect(screen.getByText(secondPair[1])).toBeInTheDocument();
 
   randomSpy.mockRestore();
 });
@@ -113,14 +125,16 @@ test('uses last selected topic from localStorage', async () => {
 });
 
 test('persists selected topic to localStorage when changed', async () => {
+  const [, nextTopic] = loadTopicsMeta();
+
   render(
     <TopicProvider>
       <App />
     </TopicProvider>,
   );
 
-  const petsCard = await screen.findByText('Pets & Companions');
-  const card = petsCard.closest('[data-topic-card="topics/pets.json"]');
+  const cardTitle = await screen.findByText(nextTopic.name);
+  const card = cardTitle.closest(`[data-topic-card="${nextTopic.filename}"]`);
   expect(card).not.toBeNull();
 
   act(() => {
@@ -128,7 +142,7 @@ test('persists selected topic to localStorage when changed', async () => {
   });
 
   await waitFor(() => {
-    expect(localStorage.getItem(SELECTED_TOPIC_KEY)).toBe('topics/pets.json');
+    expect(localStorage.getItem(SELECTED_TOPIC_KEY)).toBe(nextTopic.filename);
   });
 });
 
