@@ -1,6 +1,9 @@
 import { render, screen, waitFor, act, within } from '@testing-library/react';
 import { beforeEach, vi } from 'vitest';
 import React from 'react';
+import path from 'node:path';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import App from './App';
 import { TopicProvider } from './context/TopicContext';
 import { SELECTED_TOPIC_KEY } from './utils/storage';
@@ -10,6 +13,22 @@ import { SELECTED_TOPIC_KEY } from './utils/storage';
 beforeEach(() => {
   localStorage.clear();
 });
+
+type TopicEntry = { id: string; name: string; description?: string; image: string };
+
+const loadTopicEntries = (topicFilename: string): TopicEntry[] => {
+  const testDir = path.dirname(fileURLToPath(import.meta.url));
+  const topicPath = path.join(testDir, '..', 'data', 'topics', topicFilename);
+  return JSON.parse(readFileSync(topicPath, 'utf8')) as TopicEntry[];
+};
+
+const selectExpectedPairNames = (entries: TopicEntry[]) => {
+  return entries
+    .map((entry) => entry.name)
+    .slice()
+    .sort((a, b) => a.localeCompare(b))
+    .slice(0, 2);
+};
 
 test('app renders topics and can reach arena without crashing', async () => {
   render(
@@ -35,6 +54,8 @@ test('app renders topics and can reach arena without crashing', async () => {
 
 test('switching topics refreshes the arena pair', async () => {
   const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0);
+  const coffeePair = selectExpectedPairNames(loadTopicEntries('coffee.json'));
+  const petsPair = selectExpectedPairNames(loadTopicEntries('pets.json'));
 
   render(
     <TopicProvider>
@@ -52,8 +73,8 @@ test('switching topics refreshes the arena pair', async () => {
     screen.getByRole('button', { name: /selected/i }).click();
   });
 
-  expect(await screen.findByText('Pour-over Ritual')).toBeInTheDocument();
-  expect(screen.getByText('Single Origin Espresso')).toBeInTheDocument();
+  expect(await screen.findByText(coffeePair[0])).toBeInTheDocument();
+  expect(screen.getByText(coffeePair[1])).toBeInTheDocument();
 
   act(() => {
     screen.getByRole('button', { name: /topics/i }).click();
@@ -67,8 +88,8 @@ test('switching topics refreshes the arena pair', async () => {
     within(petsCard as HTMLElement).getByRole('button', { name: /use this/i }).click();
   });
 
-  expect(await screen.findByText('Chatty Companion Bird')).toBeInTheDocument();
-  expect(screen.getByText('Cozy Couch Cat')).toBeInTheDocument();
+  expect(await screen.findByText(petsPair[0])).toBeInTheDocument();
+  expect(screen.getByText(petsPair[1])).toBeInTheDocument();
 
   randomSpy.mockRestore();
 });
@@ -135,6 +156,7 @@ test('loads ratings on page load using last selected topic', async () => {
 
 test('shows tied places when multiple entries share the same score', async () => {
   localStorage.setItem(SELECTED_TOPIC_KEY, 'topics/pets.json');
+  const petCount = loadTopicEntries('pets.json').length;
   localStorage.setItem(
     'preference-checker/ratings/topics/pets.json',
     JSON.stringify({
@@ -155,5 +177,5 @@ test('shows tied places when multiple entries share the same score', async () =>
 
   expect(await screen.findAllByText(/1600 score/i)).toHaveLength(2);
   expect(screen.getAllByText('#1=')).toHaveLength(2);
-  expect(screen.getAllByText('#3=')).toHaveLength(3);
+  expect(screen.getAllByText('#3=')).toHaveLength(Math.max(petCount - 2, 0));
 });

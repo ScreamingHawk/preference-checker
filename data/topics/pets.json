@@ -3,30 +3,144 @@
     "id": "couch-cat",
     "name": "Cozy Couch Cat",
     "description": "A calm cat who loves sunbeams, windowsills, and naps on your lap.",
-    "image": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.pexels.com/photos/17021500/pexels-photo-17021500.jpeg?auto=compress&cs=tinysrgb&w=1600"
   },
   {
     "id": "trail-dog",
     "name": "Trail Buddy Dog",
     "description": "An energetic dog that lives for hikes, fetch, and new smells.",
-    "image": "https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.pexels.com/photos/35211146/pexels-photo-35211146.jpeg?auto=compress&cs=tinysrgb&w=1600"
   },
   {
     "id": "curious-ferret",
     "name": "Curious Ferret",
     "description": "Playful tunneler with a knack for exploring every corner.",
-    "image": "https://images.unsplash.com/photo-1529590003495-b2646e2718bf?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.pexels.com/photos/4510441/pexels-photo-4510441.jpeg?auto=compress&cs=tinysrgb&w=1600"
   },
   {
     "id": "serene-fish",
     "name": "Serene Aquarium",
     "description": "A peaceful aquascape with colorful fish and gentle movement.",
-    "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.pexels.com/photos/13277614/pexels-photo-13277614.jpeg?auto=compress&cs=tinysrgb&w=1600"
   },
   {
     "id": "chatty-bird",
     "name": "Chatty Companion Bird",
     "description": "Vibrant and social, loves learning tunes and greeting you.",
-    "image": "https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=900&q=80"
+    "image": "https://images.pexels.com/photos/9951834/pexels-photo-9951834.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "purring-roommate",
+    "name": "Purring Roommate",
+    "description": "Independent but affectionate; always nearby when you’re home.",
+    "image": "https://images.pexels.com/photos/33356398/pexels-photo-33356398.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "playful-kitten",
+    "name": "Playful Kitten",
+    "description": "Tiny chaos engine: toys, zoomies, and sudden cuddles.",
+    "image": "https://images.pexels.com/photos/18734204/pexels-photo-18734204.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "gentle-giant-dog",
+    "name": "Gentle Giant Dog",
+    "description": "Big paws, soft heart, and a talent for leaning on your leg.",
+    "image": "https://images.pexels.com/photos/13871494/pexels-photo-13871494.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "pocket-companion-dog",
+    "name": "Pocket Companion Dog",
+    "description": "Small, portable, and convinced your lap is the best place to be.",
+    "image": "https://images.pexels.com/photos/28909011/pexels-photo-28909011.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "loyal-guardian-dog",
+    "name": "Loyal Guardian Dog",
+    "description": "Watchful and devoted, happiest when your whole pack is together.",
+    "image": "https://images.pexels.com/photos/34244529/pexels-photo-34244529.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "cuddle-bunny",
+    "name": "Cuddle Bunny",
+    "description": "Quiet companion with soft hops, gentle nose boops, and hay crunches.",
+    "image": "https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "tiny-hamster",
+    "name": "Tiny Hamster",
+    "description": "Wheel sprints at midnight; seed stashes by morning.",
+    "image": "https://images.pexels.com/photos/15373310/pexels-photo-15373310.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "sweet-guinea-pig",
+    "name": "Sweet Guinea Pig",
+    "description": "Wheeks for snacks, loves cozy hideouts, and gentle handling.",
+    "image": "https://images.pexels.com/photos/20768910/pexels-photo-20768910.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "clever-rat",
+    "name": "Clever Rat",
+    "description": "Highly social, learns tricks fast, and bonds strongly with you.",
+    "image": "https://images.pexels.com/photos/10027273/pexels-photo-10027273.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "soft-chinchilla",
+    "name": "Soft Chinchilla",
+    "description": "Velvet fur, dust baths, and a gentle, curious personality.",
+    "image": "https://images.pexels.com/photos/15665996/pexels-photo-15665996.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "mellow-tortoise",
+    "name": "Mellow Tortoise",
+    "description": "Slow-paced friend who turns basking into an art form.",
+    "image": "https://images.pexels.com/photos/19205305/pexels-photo-19205305.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "curious-gecko",
+    "name": "Curious Gecko",
+    "description": "Nocturnal climber with big eyes and a talent for hanging out.",
+    "image": "https://images.pexels.com/photos/18983516/pexels-photo-18983516.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "quiet-snake",
+    "name": "Quiet Snake",
+    "description": "Low-noise companion for people who appreciate calm and routine.",
+    "image": "https://images.pexels.com/photos/3117799/pexels-photo-3117799.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "therapy-dog",
+    "name": "Therapy Dog",
+    "description": "Emotionally tuned-in buddy who’s always ready for a reassuring nudge.",
+    "image": "https://images.pexels.com/photos/31558158/pexels-photo-31558158.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "service-dog",
+    "name": "Service Dog Partner",
+    "description": "Focused, steady, and trained to help you thrive day to day.",
+    "image": "https://images.pexels.com/photos/14935941/pexels-photo-14935941.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "songbird-friend",
+    "name": "Songbird Friend",
+    "description": "Morning chirps, tiny hops, and a whole lot of personality.",
+    "image": "https://images.pexels.com/photos/34457689/pexels-photo-34457689.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "talkative-parrot",
+    "name": "Talkative Parrot",
+    "description": "Smart and expressive; learns words, games, and household routines.",
+    "image": "https://images.pexels.com/photos/13074004/pexels-photo-13074004.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "pond-pal",
+    "name": "Pond Pal",
+    "description": "Water garden vibes with gentle ripples and an easygoing rhythm.",
+    "image": "https://images.pexels.com/photos/34357073/pexels-photo-34357073.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  },
+  {
+    "id": "miniature-pig-pal",
+    "name": "Miniature Pig Pal",
+    "description": "Snack-motivated, surprisingly clever, and full of goofy charm.",
+    "image": "https://images.pexels.com/photos/4383761/pexels-photo-4383761.jpeg?auto=compress&cs=tinysrgb&w=1600"
   }
 ]
